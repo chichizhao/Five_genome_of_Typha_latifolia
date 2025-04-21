@@ -142,18 +142,20 @@
 
 # 7. Build the phylogentic tree
     ## the pep files of other species
-    | Assembly  | Species   | Source |
-    | :---: | :---: | :---: |
-    |GCF_004353265.1    |*Vutis ripapria* |https://www.ncbi.nlm.nih.gov/assembly/GCF_004353265.1/|
-    |GCA_902729315.2	|*Spirodela intermedia*   |https://www.ncbi.nlm.nih.gov/assembly/GCA_902729315.2/|
-    |GCF_000001605.2	|*Sorghun bicolor*    |https://www.ncbi.nlm.nih.gov/assembly/GCF_000003195.3/|
-    |GCF_001263595.1	|*Phalaenopsis equestris*   |https://www.ncbi.nlm.nih.gov/assembly/GCF_001263595.1/|
-    |GCF_001433935.1	|*Oryza sativa*   |https://www.ncbi.nlm.nih.gov/assembly/GCF_001433935.1/|
-    |GCF_000313855.2	|*Musa acuminata*  |https://www.ncbi.nlm.nih.gov/assembly/GCF_000313855.2/|
-    |GCF_000442705.1	|*Elaeis guineensis*  |https://www.ncbi.nlm.nih.gov/assembly/GCF_000442705.1/|
-    |GCF_001876935.1	|*Asparagus officinalis*  |https://www.ncbi.nlm.nih.gov/assembly/GCF_001876935.1/|
-    |GCF_001540865.1	|*Ananas comosus* |https://www.ncbi.nlm.nih.gov/assembly/GCF_001540865.1/|
-    |GCF_000130695.1	|*Amborella trichopoda*   |https://www.ncbi.nlm.nih.gov/assembly/GCF_000130695.1/|
+## The PEP Files of Other Species
+
+| Assembly         | Species                  | Source                                                                 |
+|------------------|--------------------------|------------------------------------------------------------------------|
+| GCF_004353265.1  | *Vutis ripapria*         | https://www.ncbi.nlm.nih.gov/assembly/GCF_004353265.1/        |
+| GCA_902729315.2  | *Spirodela intermedia*   | https://www.ncbi.nlm.nih.gov/assembly/GCA_902729315.2/         |
+| GCF_000001605.2  | *Sorghun bicolor*        | https://www.ncbi.nlm.nih.gov/assembly/GCF_000003195.3/         |
+| GCF_001263595.1  | *Phalaenopsis equestris* | https://www.ncbi.nlm.nih.gov/assembly/GCF_001263595.1/         |
+| GCF_001433935.1  | *Oryza sativa*           | https://www.ncbi.nlm.nih.gov/assembly/GCF_001433935.1/         |
+| GCF_000313855.2  | *Musa acuminata*         | https://www.ncbi.nlm.nih.gov/assembly/GCF_000313855.2/         |
+| GCF_000442705.1  | *Elaeis guineensis*      | https://www.ncbi.nlm.nih.gov/assembly/GCF_000442705.1/         |
+| GCF_001876935.1  | *Asparagus officinalis*  | https://www.ncbi.nlm.nih.gov/assembly/GCF_001876935.1/         |
+| GCF_001540865.1  | *Ananas comosus*         | https://www.ncbi.nlm.nih.gov/assembly/GCF_001540865.1/         |
+| GCF_000130695.1  | *Amborella trichopoda*   | https://www.ncbi.nlm.nih.gov/assembly/GCF_000130695.1/         |
     
     orthofinder: https://github.com/davidemms/OrthoFinder 
         orthofinder -f workdir -t 32 -S diamond
