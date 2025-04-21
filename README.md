@@ -1,8 +1,8 @@
 
 
-# the script is used to build the Five genome of Typha latifolia
+# Scripts were used to build the five genome of ***Typha latifolia***
 
-## data source 
+# 1. Data source 
 | Name     | TGS Accession | TGS Platform      | TGS Bases | NGS Accession | NGS Bases | Publication                  |
 |----------|---------------|-------------------|-----------|---------------|-----------|------------------------------|
 | CN_SC    | CRR784823     | OXFORD NANOPORE   | 36.6G     | CRR784824     | 15.99G    | GWHCBIL00000000                           |
@@ -12,7 +12,7 @@
 | USA_CA   | SRR15691261   | OXFORD NANOPORE   | 10.5G     | SRR15680754   | 21.7G     | (Aylward et al., 2023)                           |
 
 
-## filt the third generation reads (TGS) and the next generation reads (NGS)
+# 2. Filt the third generation reads (TGS) and the next generation reads (NGS)
     Nanofilt: https://github.com/wdecoster/nanofilt
 
         gunzip -c TGS.fastq.gz | NanoFilt -q 10 | gzip > highQuality-reads.fastq.gz
@@ -21,14 +21,14 @@
 
         fastp -i NGS.R1.fq.gz -I NGS.R2.fq.gz -o NGS_clean.R1.fq.gz -O NGS_clean.R2.fq.gz
     
-## evaluate the genome size
+# 3. Evaluate the genome size
     Jellyfish: https://github.com/gmarcais/Jellyfish
     GenomeScope: http://genomescope.org/genomescope2.0/
 
         jellyfish count -C -m 21 -s 1000000000 -t 10 *.fastq -o reads.jf
         jellyfish histo -t 10 reads.jf > reads.histo
 
-# Assemble the genome
+# 4. Assemble the genome
     Canu: https://github.com/marbl/canu
         canu  -p CN_SC -d CN_SC useGrid=false genomeSize=250m -nanopore ./data/* 
 
@@ -113,14 +113,14 @@
         done;
         #Finally polished genome file: genome.nextpolish.fa
 
-# evaluate the genome 
+# 5. Evaluate the genome 
     compleasm: https://github.com/huangnengCSU/compleasm
         python compleasm.py run -a CN_SC.fasta -o CN_SC_compare -l embryophyta_odb10 -t 8
     
     tidk: https://github.com/tolkit/telomeric-identifier
         tidk search -s AAACCCT -out CN_SC CN_SC.fasta
     
-# repeat and gene annotation
+# 6. Repeat and gene annotation
     EDTA: https://github.com/oushujun/EDTA
         EDTA.pl --genome CN_SC.fa --sensitive 1 --overwrite 1 --anno 1 --species others --threads 8
     
@@ -140,46 +140,48 @@
         --PROTHINT_PATH /patj/bin \
         --workingdir=/path/CN_SC_braker --min_contig=1000
 
-# build the phylogentic tree
+# 7. Build the phylogentic tree
     ## the pep files of other species
-        | Assembly  | Species   | Source |
-        | :---: | :---: | :---: |
-        |GCF_004353265.1    |*Vutis ripapria* |https://www.ncbi.nlm.nih.gov/assembly/GCF_004353265.1/|
-        |GCA_902729315.2	|*Spirodela intermedia*   |https://www.ncbi.nlm.nih.gov/assembly/GCA_902729315.2/|
-        |GCF_000001605.2	|*Sorghun bicolor*    |https://www.ncbi.nlm.nih.gov/assembly/GCF_000003195.3/|
-        |GCF_001263595.1	|*Phalaenopsis equestris*   |https://www.ncbi.nlm.nih.gov/assembly/GCF_001263595.1/|
-        |GCF_001433935.1	|*Oryza sativa*   |https://www.ncbi.nlm.nih.gov/assembly/GCF_001433935.1/|
-        |GCF_000313855.2	|*Musa acuminata*  |https://www.ncbi.nlm.nih.gov/assembly/GCF_000313855.2/|
-        |GCF_000442705.1	|*Elaeis guineensis*  |https://www.ncbi.nlm.nih.gov/assembly/GCF_000442705.1/|
-        |GCF_001876935.1	|*Asparagus officinalis*  |https://www.ncbi.nlm.nih.gov/assembly/GCF_001876935.1/|
-        |GCF_001540865.1	|*Ananas comosus* |https://www.ncbi.nlm.nih.gov/assembly/GCF_001540865.1/|
-        |GCF_000130695.1	|*Amborella trichopoda*   |https://www.ncbi.nlm.nih.gov/assembly/GCF_000130695.1/|
-        
+    | Assembly  | Species   | Source |
+    | :---: | :---: | :---: |
+    |GCF_004353265.1    |*Vutis ripapria* |https://www.ncbi.nlm.nih.gov/assembly/GCF_004353265.1/|
+    |GCA_902729315.2	|*Spirodela intermedia*   |https://www.ncbi.nlm.nih.gov/assembly/GCA_902729315.2/|
+    |GCF_000001605.2	|*Sorghun bicolor*    |https://www.ncbi.nlm.nih.gov/assembly/GCF_000003195.3/|
+    |GCF_001263595.1	|*Phalaenopsis equestris*   |https://www.ncbi.nlm.nih.gov/assembly/GCF_001263595.1/|
+    |GCF_001433935.1	|*Oryza sativa*   |https://www.ncbi.nlm.nih.gov/assembly/GCF_001433935.1/|
+    |GCF_000313855.2	|*Musa acuminata*  |https://www.ncbi.nlm.nih.gov/assembly/GCF_000313855.2/|
+    |GCF_000442705.1	|*Elaeis guineensis*  |https://www.ncbi.nlm.nih.gov/assembly/GCF_000442705.1/|
+    |GCF_001876935.1	|*Asparagus officinalis*  |https://www.ncbi.nlm.nih.gov/assembly/GCF_001876935.1/|
+    |GCF_001540865.1	|*Ananas comosus* |https://www.ncbi.nlm.nih.gov/assembly/GCF_001540865.1/|
+    |GCF_000130695.1	|*Amborella trichopoda*   |https://www.ncbi.nlm.nih.gov/assembly/GCF_000130695.1/|
+    
     orthofinder: https://github.com/davidemms/OrthoFinder 
         orthofinder -f workdir -t 32 -S diamond
 
-# align the Single copy genes
+# 7. Align the single copy genes
     mafft
         mafft --auto single_copy_genes.fasta > aligned.fasta
     trimAl
         trimal -in aligned.fasta -out aligned.trim.fasta -automated1
+
     ## merge the aligned files with python script
     
-# BEAST Estimate the divergence time
-    Beast:
+# 8. Use BEAST estimate the divergence time
+    Beast: https://beast.community/programs
         
-# pan-genome construction with OrthoFinder
-    orthofinder -f workdir2 -t 32 -S diamond
+# 9. Pan-genome construction with OrthoFinder
+    orthofinder: https://github.com/davidemms/OrthoFinder
+        orthofinder -f workdir2 -t 32 -S diamond
 
-# MCScanX
-    MCScanX: 
+# 10. MCScanX
+    MCScanX: https://github.com/wyp1125/MCScanX
         MCScanX Typha_latifolia 
     
-# Ka_Ks calculation
-    Ka_Ks_Calculator: 
+# 11. Ka_Ks calculation
+    Ka_Ks_Calculator: https://sourceforge.net/projects/kakscalculator2/
         KaKs_Calculator -i duplication.fasta -o duplication.kaks -m YN
     
-# SV, Indel, SNP detection
+# 12. SV, Indel, SNP detection
     minimap2: https://github.com/lh3/minimap2
     syri: https://github.com/schneebergerlab/syri
 
@@ -202,15 +204,18 @@
         gatk4 SelectVariants -R CN_SC.fasta -V CN_SC_combined_filtered.vcf.gz -O snp.vcf.gz --exclude-filtered true --select-type SNP
         gatk4 SelectVariants -R CN_SC.fasta -V CN_SC_combined_filtered.vcf.gz -O indel.vcf.gz --exclude-filtered true --select-type INDEL
 
-# build the SNP based phylogenetic tree
-    IQ-TREE: 
+# 13. Build the SNP based phylogenetic tree
+    IQ-TREE: https://github.com/iqtree/iqtree3
         iqtree -s tree/raw_filter_variants.min4.fasta -T 32 -m TVM+F -bb 1000 -pre tree/boostrap_1000
         
-# PSMC
-    bcftools mpileup -C50 -f CN_SC.fa CN_SC.rmdup.bam | bcftools call -c | vcfutils.pl vcf2fq -d 10 -D 200 | gzip >CN_SC_psmc.fq.gz
-    fq2psmcfa -q20 CN_SC_psmc.fq.gz >CN_SC.psmcfa
-    splitfa CN_SC.psmcfa > CN_SC_split.psmcfa
-    seq 100 | xargs -i echo psmc -N25 -t15 -r5 -b -p "4+25*2+4+6" -o CN_SC_round-{}.psmc CN_SC_split.psmcfa | sh
+# 14. PSMC
+    bcftools: https://github.com/iqtree/iqtree3
+    psmc: https://github.com/lh3/psmc
 
-# momi2 
+        bcftools mpileup -C50 -f CN_SC.fa CN_SC.rmdup.bam | bcftools call -c | vcfutils.pl vcf2fq -d 10 -D 200 | gzip >CN_SC_psmc.fq.gz
+        fq2psmcfa -q20 CN_SC_psmc.fq.gz >CN_SC.psmcfa
+        splitfa CN_SC.psmcfa > CN_SC_split.psmcfa
+        seq 100 | xargs -i echo psmc -N25 -t15 -r5 -b -p "4+25*2+4+6" -o CN_SC_round-{}.psmc CN_SC_split.psmcfa | sh
+
+# 15. Momi2 
     # all information record in momi2.ipynb
