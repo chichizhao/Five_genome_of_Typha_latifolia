@@ -220,4 +220,4 @@
         seq 100 | xargs -i echo psmc -N25 -t15 -r5 -b -p "4+25*2+4+6" -o CN_SC_round-{}.psmc CN_SC_split.psmcfa | sh
 
 # 15. Momi2 
-    # all information record in momi2.ipynb
+    ## all information record in momi2.ipynb
